@@ -39,6 +39,18 @@ class SeleniumDriver():
             print("Element not found")
             return element
 
+    def elementClick(self, locator, locatorType="id"):
+        try:
+            element = self.getElement(locator, locatorType)
+            element.click()
+            print(
+                "Clicked on element with locator: " +
+                locator + " locatorType: " + locatorType)
+        except:
+            print("Cannot click on element with locator: " +
+                  locator + " locatorType: " + locatorType)
+            print_stack()
+
     def isElementPresent(self, locator, byType):
         try:
             element = self.driver.find_element(byType, locator)

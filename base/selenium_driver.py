@@ -51,6 +51,18 @@ class SeleniumDriver():
                   locator + " locatorType: " + locatorType)
             print_stack()
 
+    def sendKeys(self, data, locator, locatorType="id"):
+        try:
+            element = self.getElement(locator, locatorType)
+            element.send_keys(data)
+            print(
+                "Sent on element with locator: " +
+                locator + " locatorType: " + locatorType)
+        except:
+            print("Cannot send on element with locator: " +
+                  locator + " locatorType: " + locatorType)
+            print_stack()
+
     def isElementPresent(self, locator, byType):
         try:
             element = self.driver.find_element(byType, locator)

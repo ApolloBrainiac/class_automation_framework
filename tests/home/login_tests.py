@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from pages.home.login_page import LoginPage
 import unittest
+import time
 
 
 class LoginTest(unittest.TestCase):
@@ -10,14 +11,16 @@ class LoginTest(unittest.TestCase):
         baseUrl = "https://letskodeit.teachable.com/"
         driver = webdriver.Firefox()
         driver.maximize_window()
-        driver.implicitly_wait(4)
+        driver.implicitly_wait(5)
         driver.get(baseUrl)
+        time.sleep(5)
 
         lp = LoginPage(driver)
         lp.login("test@email.com", "abcabc")
+        time.sleep(5)
 
         userIcon = driver.find_element(
-            By.XPATH, ".//*[@id='navbar']//span[text()='User Settings']")
+            By.XPATH, "//span[text()='User Settings']")
         if userIcon is not None:
             print("Login Successful")
         else:

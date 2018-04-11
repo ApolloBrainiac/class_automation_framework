@@ -20,12 +20,13 @@ class SeleniumDriver():
             return By.NAME
         elif locatorType == "css":
             return By.CSS_SELECTOR
-        elif locatorType == "classname":
+        elif locatorType == "class":
             return By.CLASS_NAME
-        elif locatorType == "linktext":
+        elif locatorType == "link":
             return By.LINK_TEXT
         else:
-            print("Locator type " + locatorType + " is not correct/supported")
+            print(
+                "Locator type " + locatorType + " is not correct/supported")
         return False
 
     def getElement(self, locator, locatorType="id"):
@@ -34,9 +35,13 @@ class SeleniumDriver():
             locatorType = locatorType.lower()
             byType = self.getByType(locatorType)
             element = self.driver.find_element(byType, locator)
-            print("Element Found")
+            print(
+                "Element Found with locator: " +
+                locator + " locatorType: " + locatorType)
         except:
-            print("Element not found")
+            print(
+                "Element not found with locator: " +
+                locator + " locatorType: " + locatorType)
             return element
 
     def elementClick(self, locator, locatorType="id"):
@@ -47,8 +52,9 @@ class SeleniumDriver():
                 "Clicked on element with locator: " +
                 locator + " locatorType: " + locatorType)
         except:
-            print("Cannot click on element with locator: " +
-                  locator + " locatorType: " + locatorType)
+            print(
+                "Cannot click on element with locator: " +
+                locator + " locatorType: " + locatorType)
             print_stack()
 
     def sendKeys(self, data, locator, locatorType="id"):
@@ -56,16 +62,17 @@ class SeleniumDriver():
             element = self.getElement(locator, locatorType)
             element.send_keys(data)
             print(
-                "Sent on element with locator: " +
+                "Sent data on element with locator: " +
                 locator + " locatorType: " + locatorType)
         except:
-            print("Cannot send on element with locator: " +
-                  locator + " locatorType: " + locatorType)
+            print(
+                "Cannot data send on element with locator: " +
+                locator + " locatorType: " + locatorType)
             print_stack()
 
-    def isElementPresent(self, locator, byType):
+    def isElementPresent(self, locator, locatorType="id"):
         try:
-            element = self.driver.find_element(byType, locator)
+            element = self.getElement(locator, locatorType)
             if element is not None:
                 print("Element Found")
                 return True
@@ -102,7 +109,7 @@ class SeleniumDriver():
                                     ElementNotVisibleException,
                                     ElementNotSelectableException])
             element = wait.until(
-                EC.element_to_be_clickable((By.ID, "stopFilter_stops-0")))
+                EC.element_to_be_clickable((byType, locator)))
 
             print("Element appeared on the web page")
         except:

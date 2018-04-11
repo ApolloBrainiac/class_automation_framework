@@ -18,29 +18,30 @@ class LoginPage():
 
     def getEmailField(self):
         return self.driver.find_element(
-            By.ID, "user_email")
+            By.ID, self._email_field)
 
     def getPasswordField(self):
-        self.driver.find_element(
-            By.ID, "user_password")
+        return self.driver.find_element(
+            By.ID, self._password_field)
 
     def getLoginButton(self):
-        self.driver.find_element(
-            By.NAME, "commit")
+        return self.driver.find_element(
+            By.NAME, self._login_button)
 
-    def login(self, username, password):
-        loginLink = self.driver.find_element(
-            By.LINK_TEXT, "Login")
-        loginLink.click()
+    def clickLoginLink(self):
+        self.getLoginLink().click()
 
-        emailField = self.driver.find_element(
-            By.ID, "user_email")
-        emailField.send_keys(username)
+    def enterEmail(self, email):
+        self.getEmailField.send_keys(email)
 
-        passwordField = self.driver.find_element(
-            By.ID, "user_password")
-        passwordField.send_keys(password)
+    def enterPassword(self, password):
+        self.getPasswordField().send_keys(password)
 
-        loginButton = self.driver.find_element(
-            By.NAME, "commit")
-        loginButton.click()
+    def clickLoginButton(self):
+        self.getLoginButton.click()
+
+    def login(self, email, password):
+        self.clickLoginLink()
+        self.enterEmail(email)
+        self.enterPassword(password)
+        self.clickLoginButton()

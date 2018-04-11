@@ -55,7 +55,7 @@ class SeleniumDriver():
             print(
                 "Cannot click on element with locator: " +
                 locator + " locatorType: " + locatorType)
-            print_stack()
+            # print_stack()
 
     def sendKeys(self, data, locator, locatorType="id"):
         try:
@@ -68,7 +68,7 @@ class SeleniumDriver():
             print(
                 "Cannot data send on element with locator: " +
                 locator + " locatorType: " + locatorType)
-            print_stack()
+            # print_stack()
 
     def isElementPresent(self, locator, locatorType="id"):
         try:
@@ -114,5 +114,5 @@ class SeleniumDriver():
             print("Element appeared on the web page")
         except:
             print("Element not appeared on the web page")
-            print_stack()
+            # print_stack()
         return element

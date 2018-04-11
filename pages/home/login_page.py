@@ -43,10 +43,11 @@ class LoginPage(SeleniumDriver):
         self.elementClick(self._login_button, locatorType="name")
 
     def login(self, email, password):
+        time.sleep(2)
         self.clickLoginLink()
-        time.sleep(5)
+        time.sleep(2)
         self.enterEmail(email)
-        time.sleep(5)
+        time.sleep(2)
         self.enterPassword(password)
-        time.sleep(5)
+        time.sleep(2)
         self.clickLoginButton()

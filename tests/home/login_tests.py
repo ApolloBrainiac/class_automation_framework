@@ -13,11 +13,11 @@ class LoginTest(unittest.TestCase):
         driver.maximize_window()
         driver.implicitly_wait(5)
         driver.get(baseUrl)
-        time.sleep(5)
+        time.sleep(3)
 
         lp = LoginPage(driver)
         lp.login("test@email.com", "abcabc")
-        time.sleep(5)
+        time.sleep(3)
 
         userIcon = driver.find_element(
             By.XPATH, "//span[text()='User Settings']")

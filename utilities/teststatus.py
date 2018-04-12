@@ -13,28 +13,44 @@ from utilities.custom_logger import customLogger
 
 class TestStatus(SeleniumDriver):
 
-        log = cl.customLogger(logging.INFO)
+    log = cl.customLogger(logging.INFO)
 
-        def __init__(self, driver):
-            """
-            Inits CheckPoint class
-            """
-            super(TestStatus, self).__init__(driver)
-            self.resultList = []
+    def __init__(self, driver):
+        """
+        Inits CheckPoint class
+        """
+        super(TestStatus, self).__init__(driver)
+        self.resultList = []
 
-        def setResult(self, result, resultMessage):
-            print()
+    def setResult(self, result, resultMessage):
+        try:
+            if result is not None:
+                if result:
+                    self.resultList.append("PASS")
+                    self.log.info(
+                        "### VERIFICATION SUCCESSFUL :: + " + resultMessage)
+                else:
+                    self.resultList.append("FAIL")
+                    self.log.info(
+                        "### VERIFICATION FAILED :: + " + resultMessage)
+            else:
+                self.resultList.append("FAIL")
+                self.log.info(
+                    "### VERIFICATION FAILED :: + " + resultMessage)
+        except:
+            self.resultList.append("FAIL")
+            self.log.info("### Exception Occurred !!!")
 
-        def mark(self, testName, result, resultMessage):
-            """
-            Mark the result of the verification point in a test case
-            """
-            print()
+    def mark(self, result, resultMessage):
+        """
+        Mark the result of the verification point in a test case
+        """
+        self.setResult(result, resultMessage)
 
-        def markFinal(self, testName, result, resultMessage):
-            """
-            Mark the final result of the verification point in a test case
-            This needs to be called at least once in a test case
-            This should be final test status of the test case
-            """
-            print()
+    def markFinal(self, testName, result, resultMessage):
+        """
+        Mark the final result of the verification point in a test case
+        This needs to be called at least once in a test case
+        This should be final test status of the test case
+        """
+        print()

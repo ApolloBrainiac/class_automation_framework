@@ -1,5 +1,4 @@
 from selenium import webdriver
-from selenium.webdriver.common.by import By
 from pages.home.login_page import LoginPage
 import unittest
 
@@ -15,11 +14,7 @@ class LoginTest(unittest.TestCase):
 
         lp = LoginPage(driver)
         lp.login("test@email.com", "abcabc")
+        result = lp.verifyLoginSuccess()
 
-        userIcon = driver.find_element(
-            By.XPATH, "//span[text()='User Settings']")
-        if userIcon is not None:
-            print("Login Successful")
-        else:
-            print("Login Failed")
+        assert result == True
         driver.quit()

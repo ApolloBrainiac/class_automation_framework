@@ -16,6 +16,7 @@ class LoginPage(SeleniumDriver):
     _email_field = "user_email"
     _password_field = "user_password"
     _login_button = "commit"
+    _user_image = "//span[text()='User Settings']"
 
     def clickLoginLink(self):
         self.elementClick(self._login_link, locatorType="link")
@@ -34,3 +35,11 @@ class LoginPage(SeleniumDriver):
         self.enterEmail(email)
         self.enterPassword(password)
         self.clickLoginButton()
+
+    def verifyLoginSuccess(self):
+        result = self.isElementPresent(
+            self._user_image, "xpath")
+        return result
+
+    def verifyLoginFail(self):
+        pass

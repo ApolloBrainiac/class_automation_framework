@@ -3,9 +3,12 @@ from traceback import print_stack
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import *
+from utilities.custom_logger import customLogger
 
 
 class SeleniumDriver():
+
+    log = cl.customLogger(logging.DEBUG)
 
     def __init__(self, driver):
         self.driver = driver
@@ -56,7 +59,6 @@ class SeleniumDriver():
                 "Cannot click on element with locator: " +
                 locator + " locatorType: " + locatorType)
             print_stack()
-
 
     def sendKeys(self, data, locator, locatorType="id"):
         try:

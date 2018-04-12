@@ -1,4 +1,8 @@
 from base.selenium_driver import SeleniumDriver
+<< << << < HEAD
+== == == =
+from selenium.webdriver.common.by import By
+>>>>>> > 20d216c0c8da19858c3e8895932dda0991d9279d
 
 
 class LoginPage(SeleniumDriver):
@@ -12,7 +16,6 @@ class LoginPage(SeleniumDriver):
     _email_field = "user_email"
     _password_field = "user_password"
     _login_button = "commit"
-
 
     def clickLoginLink(self):
         self.elementClick(self._login_link, locatorType="link")

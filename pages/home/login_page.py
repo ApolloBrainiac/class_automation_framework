@@ -1,4 +1,5 @@
 from base.selenium_driver import SeleniumDriver
+from selenium.webdriver.common.by import By
 import time
 
 
@@ -14,9 +15,9 @@ class LoginPage(SeleniumDriver):
     _password_field = "user_password"
     _login_button = "commit"
 
-    # def getLoginLink(self):
-    #     return self.driver.find_element(
-    #         By.LINK_TEXT, self._login_link)
+    def getLoginLink(self):
+        return self.driver.find_element(
+            By.LINK_TEXT, self._login_link)
 
     # def getEmailField(self):
     #     return self.driver.find_element(
@@ -43,11 +44,7 @@ class LoginPage(SeleniumDriver):
         self.elementClick(self._login_button, locatorType="name")
 
     def login(self, email, password):
-        time.sleep(2)
         self.clickLoginLink()
-        time.sleep(2)
         self.enterEmail(email)
-        time.sleep(2)
         self.enterPassword(password)
-        time.sleep(2)
         self.clickLoginButton()

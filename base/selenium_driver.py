@@ -3,7 +3,6 @@ from traceback import print_stack
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import *
-import time
 
 
 class SeleniumDriver():
@@ -43,12 +42,11 @@ class SeleniumDriver():
             print(
                 "Element not found with locator: " +
                 locator + " locatorType: " + locatorType)
-            return element
+        return element
 
     def elementClick(self, locator, locatorType="id"):
         try:
             element = self.getElement(locator, locatorType)
-            time.sleep(5)
             element.click()
             print(
                 "Clicked on element with locator: " +
@@ -57,44 +55,12 @@ class SeleniumDriver():
             print(
                 "Cannot click on element with locator: " +
                 locator + " locatorType: " + locatorType)
-            # print_stack()
+            print_stack()
 
-    # def clickByJavaScript(self, locator="", element=None, info="", timeToWait=0):
-    #     """
-    #     Click element by Java Script
-
-    #     Parameters:
-    #         1. Required:
-    #             None
-    #         2. Optional:
-    #             1. locator     - Locator of the element
-    #             2. element     - Element to click
-    #             3. info        - Information about the element, usually text on the element
-    #             4. timeToWait  - Time you want to wait after clicking the element
-    #     Returns:
-    #         None
-    #     Exception:
-    #         None
-    #     """
-    #     if locator:
-    #         element = self.getElement(locator=locator)
-    #     if element is not None:
-    #     try:
-    #         self.driver.execute_script("arguments[0].click();", element)
-    #         # self.log.info("Clicked on element :: " + info)
-    #         # self.log.info("Waiting after clicking the element for " +
-    #         #               str(timeToWait) + " seconds")
-    #         time.sleep(timeToWait)
-    #         return True
-    #     except:
-    #         # self.log.error("Failed to click element :: " + info)
-    #         # traceback.print_stack()
-    #         return False
 
     def sendKeys(self, data, locator, locatorType="id"):
         try:
             element = self.getElement(locator, locatorType)
-            time.sleep(5)
             element.send_keys(data)
             print(
                 "Sent data on element with locator: " +
@@ -103,7 +69,7 @@ class SeleniumDriver():
             print(
                 "Cannot data send on element with locator: " +
                 locator + " locatorType: " + locatorType)
-            # print_stack()
+            print_stack()
 
     def isElementPresent(self, locator, locatorType="id"):
         try:
@@ -149,5 +115,5 @@ class SeleniumDriver():
             print("Element appeared on the web page")
         except:
             print("Element not appeared on the web page")
-            # print_stack()
+            print_stack()
         return element

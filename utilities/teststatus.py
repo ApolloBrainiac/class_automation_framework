@@ -8,7 +8,8 @@ Example:
     self.check_point.markFinal("Test Name", result, "Message")
 """
 from base.selenium_driver import SeleniumDriver
-from utilities.custom_logger import customLogger
+import utilities.custom_logger as cl
+import logging
 
 
 class TestStatus(SeleniumDriver):
@@ -28,18 +29,18 @@ class TestStatus(SeleniumDriver):
                 if result:
                     self.resultList.append("PASS")
                     self.log.info(
-                        "### VERIFICATION SUCCESSFUL :: + " + resultMessage)
+                        "### VERIFICATION SUCCESSFUL :: " + resultMessage)
                 else:
                     self.resultList.append("FAIL")
-                    self.log.info(
-                        "### VERIFICATION FAILED :: + " + resultMessage)
+                    self.log.error(
+                        "### VERIFICATION FAILED :: " + resultMessage)
             else:
                 self.resultList.append("FAIL")
-                self.log.info(
-                    "### VERIFICATION FAILED :: + " + resultMessage)
+                self.log.error(
+                    "### VERIFICATION FAILED :: " + resultMessage)
         except:
             self.resultList.append("FAIL")
-            self.log.info("### Exception Occurred !!!")
+            self.log.error("### Exception Occurred !!!")
 
     def mark(self, result, resultMessage):
         """
@@ -53,4 +54,13 @@ class TestStatus(SeleniumDriver):
         This needs to be called at least once in a test case
         This should be final test status of the test case
         """
-        print()
+        self.setResult(result, resultMessage)
+
+        if "FAIL" in self.resultList:
+            self.log.error(testName + " ### TEST FAILED")
+            self.resultList.clear()
+            assert True == False
+        else:
+            self.log.info(testName + " ### TEST SUCCESSFUL ")
+            self.resultList.clear()
+            assert True == True

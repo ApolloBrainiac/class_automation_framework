@@ -48,7 +48,7 @@ class LoginPage(SeleniumDriver):
         return result
 
     def verifyTitle(self):
-        if "Let's Kode It" in self.getTitle():
+        if "Google" in self.getTitle():
             return True
         else:
             return False

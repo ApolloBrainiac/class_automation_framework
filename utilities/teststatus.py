@@ -34,13 +34,16 @@ class TestStatus(SeleniumDriver):
                     self.resultList.append("FAIL")
                     self.log.error(
                         "### VERIFICATION FAILED :: " + resultMessage)
+                    self.screenShot(resultMessage)
             else:
                 self.resultList.append("FAIL")
                 self.log.error(
                     "### VERIFICATION FAILED :: " + resultMessage)
+                self.screenShot(resultMessage)
         except:
             self.resultList.append("FAIL")
             self.log.error("### Exception Occurred !!!")
+            self.screenShot(resultMessage)
 
     def mark(self, result, resultMessage):
         """

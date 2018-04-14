@@ -22,7 +22,7 @@ class SeleniumDriver():
         """
         fileName = resultMessage + "." + str(
             round(time.time() * 1000)) + ".png"
-        screenshotDirectory = "../screenshots"
+        screenshotDirectory = "../screenshots/"
         relativeFileName = screenshotDirectory + fileName
         currentDirectory = os.path.dirname(__file__)
         destinationFile = os.path.join(
@@ -59,7 +59,8 @@ class SeleniumDriver():
             return By.LINK_TEXT
         else:
             self.log.info(
-                "Locator type " + locatorType + " is not correct/supported")
+                "Locator type " + locatorType +
+                " is not correct/supported")
         return False
 
     def getElement(self, locator, locatorType="id"):

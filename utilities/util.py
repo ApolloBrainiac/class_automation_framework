@@ -120,4 +120,28 @@ class Util(object):
                 "### VERIFICATION DOES NO MATCH !!!")
             return False
 
-    
+    def verifyListMatch(self, expectedList, actualList):
+        """
+
+        Verify two list matches
+
+        Parameters:
+            expectedList: Expected List
+            actualList: Actual List
+        """
+        return set(expectedList) == set(actualList)
+
+    def verifyListContains(self, expectedList, actualList):
+        """
+        Verify actual list contains elements of expected list
+
+        Parameters:
+            expectedList: Expected List
+            actualList: Actual List
+        """
+        length = len(expectedList)
+        for i in range(0, length):
+            if expectedList[i] not in actualList:
+                return False
+            else:
+                return True

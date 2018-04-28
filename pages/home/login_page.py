@@ -47,7 +47,7 @@ class LoginPage(SeleniumDriver):
             self._login_alert, "xpath")
         return result
 
-    def verifyTitle(self):
+    def verifyLoginTitle(self):
         if "Google" in self.getTitle():
             return True
         else:

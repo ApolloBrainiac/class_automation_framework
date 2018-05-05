@@ -168,6 +168,29 @@ class SeleniumDriver():
             self.log.info("Element not found")
             return False
 
+    def isElementDisplayed(self, locator="", locatorType="id", element=None):
+        """
+        Check if element is displayed
+        """
+        isDisplayed = False
+        try:
+            if locator:
+                element = self.getElement(locator, locatorType)
+            if element is not None:
+                isDisplayed = element.is_displayed()
+                self.log.info(
+                    "Element is displayed with locator: " +
+                    locator + " locatorType: " + locatorType)
+            else:
+                self.log.info(
+                    "Element not displayed with locator: " +
+                    locator + " locatorType: " + locatorType)
+            return isDisplayed
+        except:
+            print("Element not found")
+            return False
+
+
     def elementPresenceCheck(self, locator, byType):
         try:
             elementList = self.driver.find_elements(byType, locator)

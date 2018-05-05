@@ -78,6 +78,24 @@ class SeleniumDriver():
                 locator + " locatorType: " + locatorType)
         return element
 
+    def getElementList(self, locator, locatorType="id"):
+        """
+        Get list of elements
+        """
+        element = None
+        try:
+            locatorType = locatorType.lower()
+            byType = self.getByType(locatorType)
+            element = self.driver.find_elements(byType, locator)
+            self.log.info(
+                "Element list found with locator: " + locator +
+                " and locatorType: " + locatorType)
+        except:
+            self.log.info(
+                "Element list not found with locator: " + locator +
+                " and locatorType: " + locatorType)
+        return element
+
     def elementClick(self, locator, locatorType="id"):
         try:
             element = self.getElement(locator, locatorType)

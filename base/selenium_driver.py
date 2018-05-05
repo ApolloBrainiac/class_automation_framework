@@ -190,7 +190,6 @@ class SeleniumDriver():
             print("Element not found")
             return False
 
-
     def elementPresenceCheck(self, locator, byType):
         try:
             elementList = self.driver.find_elements(byType, locator)

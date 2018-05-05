@@ -96,7 +96,7 @@ class SeleniumDriver():
                 " and locatorType: " + locatorType)
         return element
 
-    def elementClick(self, locator, locatorType="id"):
+    def elementClick(self, locator="", locatorType="id", element=None):
         try:
             if locator:
                 element = self.getElement(locator, locatorType)
@@ -110,7 +110,7 @@ class SeleniumDriver():
                 locator + " locatorType: " + locatorType)
             print_stack()
 
-    def sendKeys(self, data, locator, locatorType="id"):
+    def sendKeys(self, data, locator="", locatorType="id", element=None):
         try:
             if locator:
                 element = self.getElement(locator, locatorType)
@@ -124,7 +124,37 @@ class SeleniumDriver():
                 locator + " locatorType: " + locatorType)
             print_stack()
 
-    def isElementPresent(self, locator, locatorType="id"):
+    def getText(self, locator="", locatorType="id", element=None, info=""):
+        """
+        Get 'Text' on an element
+        """
+        try:
+            if locator:
+                self.log.debug(
+                    "In locator condition")
+                element = self.getElement(locator, locatorType)
+            self.log.debug(
+                "Before finding text")
+            text = element.text
+            self.log.debug(
+                "After finding element, size is: " +
+                str(len(text)))
+            if len(text) == 0:
+                text = element.get_attribute("innerText")
+            if len(text) != 0:
+                self.log.info(
+                    "Getting text on element :: " + info)
+                self.log.info(
+                    "The text is :: '" + text + "'")
+                text = text.strip()
+        except:
+            self.log.error(
+                "Failed to get text on element " + info)
+            print_stack()
+            text = None
+        return text
+
+    def isElementPresent(self, locator="", locatorType="id", element=None):
         try:
             if locator:
                 element = self.getElement(locator, locatorType)

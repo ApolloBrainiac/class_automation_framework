@@ -17,7 +17,7 @@ class LoginPage(BasePage):
     _password_field = "user_password"
     _login_button = "commit"
     _user_image = "//span[text()='User Settings']"
-    _login_alert = "//div[contains(text(), 'Invalid email')]"
+    _login_alert = "//div[contains(text(), 'Invalid email or password')]"
 
     def clickLoginLink(self):
         self.elementClick(self._login_link, locatorType="link")

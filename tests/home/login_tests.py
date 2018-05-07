@@ -1,5 +1,5 @@
 from pages.home.login_page import LoginPage
-from utilities.teststatus import TestStatus
+from utilities.status import Status
 import unittest
 import pytest
 
@@ -10,7 +10,7 @@ class LoginTest(unittest.TestCase):
     @pytest.fixture(autouse=True)
     def classSetup(self, oneTimeSetUp):
         self.lp = LoginPage(self.driver)
-        self.ts = TestStatus(self.driver)
+        self.ts = Status(self.driver)
 
     @pytest.mark.run(order=2)
     def test_validLogin(self):

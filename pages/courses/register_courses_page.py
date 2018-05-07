@@ -64,7 +64,7 @@ class CoursesPage(BasePage):
         self.enterCreditInfo()
         self.submitEnroll()
 
-    def verifyError(self):
+    def verifyErrorMessage(self):
         result = self.isElementPresent(
             self._enroll_error_message, "class")
         return result

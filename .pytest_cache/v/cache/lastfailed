@@ -1,3 +1,4 @@
 {
+  "tests/courses/register_courses_tests.py::RegisterTest::testRegisterError": true,
   "tests/home/login_tests.py::LoginTest::test_invalidLogin": true
 }
